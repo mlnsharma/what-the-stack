@@ -1,0 +1,16 @@
+services:
+  cassandra-db:
+    container_name: db
+    hostname: db
+    image: cassandra:4.1.2
+    ports:
+      - "9042:9042"
+  cassandra-app:
+    container_name: app
+    hostname: app
+    build: .
+    depends_on: 
+      - cassandra-db
+networks:
+  default:
+    name: cassandra-network
